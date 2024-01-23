@@ -2,7 +2,32 @@ import { opine, json } from "https://deno.land/x/opine/mod.ts";
 const tokn = Deno.env.get("MY_VAR");
 const app = opine();
 const port = 3000;
+const createPullRequest = async (accessToken, owner, repo, title, head, base) => {
+    const apiUrl = `https://api.github.com/repos/${owner}/${repo}/pulls`;
 
+    const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${accessToken}`,
+            "Accept": "application/vnd.github.v3+json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            title,
+            head,
+            base,
+        }),
+    });
+
+    if (!response.ok) {
+        const responseBody = await response.text();
+        
+        console.error(`Failed to create pull request: ${response.status} - ${responseBody}`);
+    } else {
+        const pullRequestData = await response.json();
+        console.log(`Pull request created successfully: ${pullRequestData.html_url}`);
+    }
+};
 
 // Middleware to parse JSON body for POST requests
 app.use(json()); // Use Opine's json middleware
@@ -14,7 +39,8 @@ app.post("/", (req, res) => {
   console.log("Baranch:",pull_branch[2]);
   const pull_Title=payload.commits[0].message;
   console.log("Title:",pull_Title);
-  console.log("Token:",tokn);
+  createPullRequest(tokn, "Testing-Staytuned", "test", pull_Title, pull_branch[2], "main");
+  // console.log("Token:",tokn);
   // Your logic to handle GitHub webhook events goes here
   // console.log("Received GitHub webhook payload:", payload);
 
