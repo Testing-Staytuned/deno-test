@@ -76,21 +76,20 @@ console.log(`Webhook server listening `);
  function processWebhook(payload) {
     console.log("Received GitHub webhook payload:", payload.comment.body);
 //   const event = payload.headers.get("x-github-event");
-  const body = payload.body;
-  console.log("Body:",body);
+//   const body = payload.body;
+//   console.log("Body:",body);
 //   const data = JSON.parse(body);
 
-//   if (event === "issues" && data.action === "opened") {
+  if (payload.issue.state === "opened") {
 //     const issueTitle = data.issue.title;
 //     const issueBody = data.issue.body;
 
-//     if (issueBody && issueBody.toLowerCase().trim() === "start-coding") {
-//       const branchName = `feature/${issueTitle.toLowerCase().replace(/\s+/g, "-")}`;
-
+    if (payload.comment.body === "start-coding") {
+      const branchName = payload.issue.title;
 //       // Call the function to create a new branch here
-//       createBranch(branchName);
-//     }
-//   }
+      createBranch(branchName);
+    }
+  }
 }
 
 function createBranch(branchName) {
