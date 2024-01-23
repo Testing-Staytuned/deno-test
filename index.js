@@ -13,7 +13,7 @@ app.post("/", (req, res) => {
   const temp=payload.ref.toString().split('/');
   console.log(temp[2]);
   const temp1=payload.commits;
-  console.log("msg:",temp1);
+  console.log("msg:",temp1[0]);
   // Your logic to handle GitHub webhook events goes here
   // console.log("Received GitHub webhook payload:", payload);
 
