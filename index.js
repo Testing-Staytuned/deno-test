@@ -73,9 +73,9 @@ const server = serve({ port });
 
 console.log(`Webhook server listening `);
 
-async function processWebhook(payload) {
+ function processWebhook(payload) {
   const event = payload.headers.get("x-github-event");
-  const body = new TextDecoder("utf-8").decode(await Deno.readAll(payload.body));
+  const body = new TextDecoder("utf-8").decode( Deno.readAll(payload.body));
   const data = JSON.parse(body);
 
   if (event === "issues" && data.action === "opened") {
@@ -99,7 +99,7 @@ function createBranch(branchName) {
 
 for await (const req of server) {
   if (req.method === "POST" && req.url === "/") {
-    await processWebhook(req);
+     processWebhook(req);
     req.respond({ status: 200, body: "OK" });
   } else {
     req.respond({ status: 404, body: "Not Found" });
