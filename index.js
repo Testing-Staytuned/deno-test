@@ -52,9 +52,9 @@ app.use(json()); // Use Opine's json middleware
 //   res.send("POST request to /webhook endpoint\n");
 // });
 
-// app.listen(port, () => {
-//   console.log(`Server is running`);
-// });
+app.listen(port, () => {
+  console.log(`Server is running`);
+});
 
 
 
@@ -68,8 +68,8 @@ app.use(json()); // Use Opine's json middleware
 import { serve } from "https://deno.land/std/http/server.ts";
 // import { BufReader } from "https://deno.land/std/io/bufio.ts";
 
-const port = 3000; // Change to your desired port
-const server = serve({ port });
+// const port = 3000; // Change to your desired port
+// const server = serve({ port });
 
 console.log(`Webhook server listening `);
 
@@ -77,19 +77,19 @@ console.log(`Webhook server listening `);
     console.log("Received GitHub webhook payload:", payload);
 //   const event = payload.headers.get("x-github-event");
 //   const body = new TextDecoder("utf-8").decode( Deno.readAll(payload.body));
-  const data = JSON.parse(body);
+//   const data = JSON.parse(body);
 
-  if (event === "issues" && data.action === "opened") {
-    const issueTitle = data.issue.title;
-    const issueBody = data.issue.body;
+//   if (event === "issues" && data.action === "opened") {
+//     const issueTitle = data.issue.title;
+//     const issueBody = data.issue.body;
 
-    if (issueBody && issueBody.toLowerCase().trim() === "start-coding") {
-      const branchName = `feature/${issueTitle.toLowerCase().replace(/\s+/g, "-")}`;
+//     if (issueBody && issueBody.toLowerCase().trim() === "start-coding") {
+//       const branchName = `feature/${issueTitle.toLowerCase().replace(/\s+/g, "-")}`;
 
-      // Call the function to create a new branch here
-      createBranch(branchName);
-    }
-  }
+//       // Call the function to create a new branch here
+//       createBranch(branchName);
+//     }
+//   }
 }
 
 function createBranch(branchName) {
