@@ -29,7 +29,7 @@ const createPullRequest = async (accessToken, owner, repo, title, head, base) =>
     }
 };
 setInterval(function(){ console.log("Hello"); 
-// console.log(clear());
+console.log(clear());
 }
 , 2000);
 
