@@ -28,6 +28,10 @@ const createPullRequest = async (accessToken, owner, repo, title, head, base) =>
         console.log(`Pull request created successfully: ${pullRequestData.html_url}`);
     }
 };
+setTimeout(function(){ console.log("Hello"); 
+// console.log(clear());
+}
+, 2000);
 
 // Middleware to parse JSON body for POST requests
 app.use(json()); // Use Opine's json middleware
