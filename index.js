@@ -74,7 +74,7 @@ import { serve } from "https://deno.land/std/http/server.ts";
 console.log(`Webhook server listening `);
 
  function processWebhook(payload) {
-    console.log("Received GitHub webhook payload:", payload.comment);
+    console.log("Received GitHub webhook payload:", payload.comment.body);
 //   const event = payload.headers.get("x-github-event");
 //   const body = new TextDecoder("utf-8").decode( Deno.readAll(payload.body));
 //   const data = JSON.parse(body);
