@@ -80,7 +80,7 @@ console.log(`Webhook server listening `);
 //   console.log("Body:",body);
 //   const data = JSON.parse(body);
 console.log("Payload:",payload.issue.state);
-  if (payload.issue.state === "opened") {
+  if (payload.issue.state === "open") {
 //     const issueTitle = data.issue.title;
 //     const issueBody = data.issue.body;
 
