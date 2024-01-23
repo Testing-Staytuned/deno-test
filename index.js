@@ -10,9 +10,10 @@ app.use(json()); // Use Opine's json middleware
 // Respond to POST requests to the "/webhook" endpoint (GitHub webhook events)
 app.post("/", (req, res) => {
   const payload = req.body; // Access parsed body with req.body
+  console.log(payload.ref);
   
   // Your logic to handle GitHub webhook events goes here
-  console.log("Received GitHub webhook payload:", payload);
+  // console.log("Received GitHub webhook payload:", payload);
 
   res.send("POST request to /webhook endpoint\n");
 });
