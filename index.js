@@ -1,5 +1,5 @@
 // import { opine, json } from "https://deno.land/x/opine/mod.ts";
-const tokn = Deno.env.get("MY_VAR");
+// const tokn = Deno.env.get("MY_VAR");
 // const app = opine();
 // const port = 3000;
 // const createPullRequest = async (accessToken, owner, repo, title, head, base) => {
@@ -97,7 +97,7 @@ function createBranch(branchName) {
   console.log(`Creating branch: ${branchName}`);
 }
 
-for await (const req of server) {
+for(const req of server) {
   if (req.method === "POST" && req.url === "/") {
      processWebhook(req);
     req.respond({ status: 200, body: "OK" });
