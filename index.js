@@ -10,7 +10,7 @@ app.use("/", (req, res, next) => {
 });
 
 // Middleware to parse JSON body for POST requests
-app.use("/webhook", async (req, res, next) => {
+app.use("/", async (req, res, next) => {
   console.log("Parsing JSON body");
   try {
     const body = await req.json();
