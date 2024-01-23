@@ -1,5 +1,5 @@
 import { opine, json } from "https://deno.land/x/opine/mod.ts";
-
+const tokn = Deno.env.get("MY_VAR");
 const app = opine();
 const port = 3000;
 
@@ -14,6 +14,7 @@ app.post("/", (req, res) => {
   console.log("Baranch:",pull_branch[2]);
   const pull_Title=payload.commits[0].message;
   console.log("Title:",pull_Title);
+  console.log("Token:",tokn);
   // Your logic to handle GitHub webhook events goes here
   // console.log("Received GitHub webhook payload:", payload);
 
