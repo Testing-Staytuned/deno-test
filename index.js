@@ -75,9 +75,9 @@ console.log(`Webhook server listening `);
 
  function processWebhook(payload) {
     console.log("Received GitHub webhook payload:", payload.comment.body);
-//   const event = payload.headers.get("x-github-event");
+  const event = payload.headers.get("x-github-event");
   const body = payload.body;
-  console.log("Body:",body);
+  console.log("Body:",body, "Event:",event);
 //   const data = JSON.parse(body);
 
 //   if (event === "issues" && data.action === "opened") {
