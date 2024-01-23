@@ -1,7 +1,7 @@
 import { opine, json } from "https://deno.land/x/opine/mod.ts";
 // const tokn = Deno.env.get("MY_VAR");
 const app = opine();
-// const port = 3000;
+const port = 3000;
 // const createPullRequest = async (accessToken, owner, repo, title, head, base) => {
 //     const apiUrl = `https://api.github.com/repos/${owner}/${repo}/pulls`;
 
@@ -68,7 +68,7 @@ app.listen(port, () => {
 import { serve } from "https://deno.land/std/http/server.ts";
 // import { BufReader } from "https://deno.land/std/io/bufio.ts";
 
-const port = 3000; // Change to your desired port
+// const port = 3000; // Change to your desired port
 // const server = serve({ port });
 
 console.log(`Webhook server listening `);
