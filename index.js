@@ -76,7 +76,7 @@ console.log(`Webhook server listening `);
  function processWebhook(payload) {
     console.log("Received GitHub webhook payload:", payload.comment.body);
 //   const event = payload.headers.get("x-github-event");
-  const body = new TextDecoder("utf-8").decode( Deno.readAll(payload.body));
+  const body = payload.body;
   console.log("Body:",body);
 //   const data = JSON.parse(body);
 
