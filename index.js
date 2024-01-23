@@ -71,49 +71,6 @@ import { serve } from "https://deno.land/std/http/server.ts";
 const port = 3000; // Change to your desired port
 const server = serve({ port });
 
-
-const createBranch1 = async (owner, repo, baseBranch, newBranch, personalAccessToken) => {
-    const apiUrl = `https://api.github.com/repos/${owner}/${repo}/git/refs`;
-
-    try {
-        // Get the latest commit SHA of the base branch
-        const baseBranchResponse = await fetch(`${apiUrl}/heads/${baseBranch}`, {
-            headers: {
-                Authorization: `Bearer ${personalAccessToken}`,
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (!baseBranchResponse.ok) {
-            throw new Error(`Failed to fetch the base branch: ${baseBranchResponse.statusText}`);
-        }
-
-        const baseBranchData = await baseBranchResponse.json();
-        const baseBranchSHA = baseBranchData.object.sha;
-
-        // Create a new branch using the latest commit SHA
-        const createBranchResponse = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                Authorization: `Bearer ${personalAccessToken}`,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                ref: `refs/heads/${newBranch}`,
-                sha: baseBranchSHA,
-            }),
-        });
-
-        if (!createBranchResponse.ok) {
-            throw new Error(`Failed to create the new branch: ${createBranchResponse.statusText}`);
-        }
-
-        console.log(`Branch '${newBranch}' created successfully.`);
-    } catch (error) {
-        console.error(error.message);
-    }
-};
-
 console.log(`Webhook server listening `);
 
 async function processWebhook(payload) {
@@ -135,7 +92,7 @@ async function processWebhook(payload) {
 }
 
 function createBranch(branchName) {
-    createBranch1("Testing-Staytuned", "test", "main", branchName, tokn);
+    
   // Implement branch creation logic here (use the previous examples)
   console.log(`Creating branch: ${branchName}`);
 }
