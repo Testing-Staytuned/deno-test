@@ -1,15 +1,19 @@
-// webhook.ts
+import { opine } from "https://deno.land/x/opine/mod.ts";
 
-import { serve } from "https://deno.land/std/http/server.ts";
+const app = opine();
+const port = 3000;
 
-const server = serve({ port: 3000 });
-console.log("Server is running on http://localhost:3000/webhook");
+// Middleware to log "Hello" for all requests to the "/" endpoint
+app.use("/", (req, res, next) => {
+  console.log("Hello");
+  next();
+});
 
-for await (const req of server) {
-  const body = new TextDecoder().decode(await Deno.readAll(req.body));
+// Respond with "Hello, Deno!" for requests to the "/" endpoint
+app.get("/", (req, res) => {
+  res.send("Hello, Deno!\n");
+});
 
-  // Handle GitHub webhook events here
-  console.log("Received GitHub webhook event:", body);
-
-  req.respond({ status: 200, body: "Webhook received successfully" });
-}
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
