@@ -9,9 +9,11 @@ app.use("/", (req, res, next) => {
   next();
 });
 
-// Respond with "Hello, Deno!" for requests to the "/" endpoint
-app.get("/", (req, res) => {
-  res.send("Hello, Deno!\n");
+
+// Respond to POST requests to the "/users" endpoint
+app.post("/", (req, res) => {
+  res.send("POST request to endpoint\n");
+
 });
 
 app.listen(port, () => {
