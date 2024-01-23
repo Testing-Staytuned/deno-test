@@ -28,9 +28,10 @@ const createPullRequest = async (accessToken, owner, repo, title, head, base) =>
         console.log(`Pull request created successfully: ${pullRequestData.html_url}`);
     }
 };
-setInterval(function(){ console.log("Hello"); 
-console.clear();
-}
+
+// setInterval(function(){ console.log("Hello"); 
+// console.clear();
+// }
 , 2000);
 
 // Middleware to parse JSON body for POST requests
