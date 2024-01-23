@@ -1,6 +1,6 @@
-// import { opine, json } from "https://deno.land/x/opine/mod.ts";
+import { opine, json } from "https://deno.land/x/opine/mod.ts";
 // const tokn = Deno.env.get("MY_VAR");
-// const app = opine();
+const app = opine();
 // const port = 3000;
 // const createPullRequest = async (accessToken, owner, repo, title, head, base) => {
 //     const apiUrl = `https://api.github.com/repos/${owner}/${repo}/pulls`;
