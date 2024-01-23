@@ -35,7 +35,7 @@
 // // , 2000);
 
 // // Middleware to parse JSON body for POST requests
-// app.use(json()); // Use Opine's json middleware
+app.use(json()); // Use Opine's json middleware
 
 // // Respond to POST requests to the "/webhook" endpoint (GitHub webhook events)
 // app.post("/", (req, res) => {
@@ -97,11 +97,17 @@ function createBranch(branchName) {
   console.log(`Creating branch: ${branchName}`);
 }
 
-// for(const req of server) {
-  if (req.method === "POST" && req.url === "/") {
-     processWebhook(req);
-//     req.respond({ status: 200, body: "OK" });
-//   } else {
-//     req.respond({ status: 404, body: "Not Found" });
-//   }
-}
+app.post("/", (req, res) => {
+    const payload = req.body; // Access parsed body with req.body
+    processWebhook(payload);
+    // const pull_branch=payload.ref.toString().split('/');
+    // console.log("Baranch:",pull_branch[2]);
+    // const pull_Title=payload.commits[0].message;
+    // console.log("Title:",pull_Title);
+    // createPullRequest(tokn, "Testing-Staytuned", "test", pull_Title, pull_branch[2], "main");
+    // console.log("Token:",tokn);
+    // Your logic to handle GitHub webhook events goes here
+    // console.log("Received GitHub webhook payload:", payload);
+    
+    res.send("POST request to /webhook endpoint\n");
+    });
