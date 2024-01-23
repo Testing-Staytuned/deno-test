@@ -68,7 +68,7 @@ app.listen(port, () => {
 import { serve } from "https://deno.land/std/http/server.ts";
 // import { BufReader } from "https://deno.land/std/io/bufio.ts";
 
-// const port = 3000; // Change to your desired port
+const port = 3000; // Change to your desired port
 // const server = serve({ port });
 
 console.log(`Webhook server listening `);
