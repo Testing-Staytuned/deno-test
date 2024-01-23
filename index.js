@@ -32,7 +32,7 @@ const createPullRequest = async (accessToken, owner, repo, title, head, base) =>
 // setInterval(function(){ console.log("Hello"); 
 // console.clear();
 // }
-, 2000);
+// , 2000);
 
 // Middleware to parse JSON body for POST requests
 app.use(json()); // Use Opine's json middleware
