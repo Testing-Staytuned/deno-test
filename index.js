@@ -19,7 +19,7 @@ app.use("/", (req, res, next) => {
 });
 
 // Respond to POST requests to the "/webhook" endpoint (GitHub webhook events)
-app.post("/webhook", (req, res) => {
+app.post("/", (req, res) => {
   const payload = req.body; // Access parsed body with req.body
   
   // Your logic to handle GitHub webhook events goes here
