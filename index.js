@@ -28,7 +28,7 @@ const createPullRequest = async (accessToken, owner, repo, title, head, base) =>
         console.log(`Pull request created successfully: ${pullRequestData.html_url}`);
     }
 };
-setTimeout(function(){ console.log("Hello"); 
+setInterval(function(){ console.log("Hello"); 
 // console.log(clear());
 }
 , 2000);
