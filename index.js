@@ -1,4 +1,4 @@
-import { opine } from "https://deno.land/x/opine/mod.ts";
+import { opine, json } from "https://deno.land/x/opine/mod.ts";
 
 const app = opine();
 const port = 3000;
@@ -10,21 +10,17 @@ app.use("/", (req, res, next) => {
 });
 
 // Middleware to parse JSON body for POST requests
-app.use("/", async (req, res, next) => {
-  console.log("Parsing JSON body");
-  try {
-    const body = await req.json();
-    req.parsedBody = body;
-    next();
-  } catch (error) {
-    console.error("Error parsing JSON body:", error);
-    res.status(400).send("Bad Request");
-  }
+app.use(json()); // Use Opine's json middleware
+
+// Middleware to log parsed body
+app.use("/", (req, res, next) => {
+  console.log("Parsed body:", req.body);
+  next();
 });
 
 // Respond to POST requests to the "/webhook" endpoint (GitHub webhook events)
 app.post("/webhook", (req, res) => {
-  const payload = req.parsedBody;
+  const payload = req.body; // Access parsed body with req.body
   
   // Your logic to handle GitHub webhook events goes here
   console.log("Received GitHub webhook payload:", payload);
