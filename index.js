@@ -69,18 +69,9 @@ import { serve } from "https://deno.land/std/http/server.ts";
 // import { BufReader } from "https://deno.land/std/io/bufio.ts";
 
 const port = 3000; // Change to your desired port
-function startServer(port) {
-    // const server = serve({ port });
-    app.post("/", (req, res) => {
-        const payload = req.body; // Access parsed body with req.body
-        processWebhook(payload);        
-        res.send("POST request to /webhook endpoint\n");
-        });
-    
-    console.log(`Webhook server listening on port ${port}`);
-}
+const server = serve({ port });
 
-startServer(port);
+console.log(`Webhook server listening `);
 
  function processWebhook(payload) {
   const event = payload.headers.get("x-github-event");
@@ -106,3 +97,17 @@ function createBranch(branchName) {
   console.log(`Creating branch: ${branchName}`);
 }
 
+app.post("/", (req, res) => {
+    const payload = req.body; // Access parsed body with req.body
+    processWebhook(payload);
+    // const pull_branch=payload.ref.toString().split('/');
+    // console.log("Baranch:",pull_branch[2]);
+    // const pull_Title=payload.commits[0].message;
+    // console.log("Title:",pull_Title);
+    // createPullRequest(tokn, "Testing-Staytuned", "test", pull_Title, pull_branch[2], "main");
+    // console.log("Token:",tokn);
+    // Your logic to handle GitHub webhook events goes here
+    // console.log("Received GitHub webhook payload:", payload);
+    
+    res.send("POST request to /webhook endpoint\n");
+    });
