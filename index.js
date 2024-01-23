@@ -35,11 +35,11 @@ const createPullRequest = async (accessToken, owner, repo, title, head, base) =>
 app.post("/", (req, res) => {
   console.log("hello");
   const payload = req.body; // Access parsed body with req.body
-  console.log(payload.ref);
+  console.log(payload);
   // Your logic to handle GitHub webhook events goes here
   // console.log("Received GitHub webhook payload:", payload);
 
-  res.send("POST request to /webhook endpoint\n");
+  res.send("POST request to / endpoint\n");
 });
 
 app.listen(port, () => {
