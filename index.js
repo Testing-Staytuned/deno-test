@@ -98,10 +98,10 @@ function createBranch(branchName) {
 }
 
 // for(const req of server) {
-//   if (req.method === "POST" && req.url === "/") {
+  if (req.method === "POST" && req.url === "/") {
      processWebhook(req);
 //     req.respond({ status: 200, body: "OK" });
 //   } else {
 //     req.respond({ status: 404, body: "Not Found" });
 //   }
-// }
+}
