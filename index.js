@@ -97,11 +97,11 @@ function createBranch(branchName) {
   console.log(`Creating branch: ${branchName}`);
 }
 
-for(const req of server) {
-  if (req.method === "POST" && req.url === "/") {
+// for(const req of server) {
+//   if (req.method === "POST" && req.url === "/") {
      processWebhook(req);
-    req.respond({ status: 200, body: "OK" });
-  } else {
-    req.respond({ status: 404, body: "Not Found" });
-  }
-}
+//     req.respond({ status: 200, body: "OK" });
+//   } else {
+//     req.respond({ status: 404, body: "Not Found" });
+//   }
+// }
