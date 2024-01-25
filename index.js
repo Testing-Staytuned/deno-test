@@ -119,7 +119,7 @@ import { Application, Router } from "https://deno.land/x/oak/mod.ts";
 const app = new Application();
 const router = new Router();
 
-router.get("/", async(context) => {
+router.get("/"||"index.html", async(context) => {
   context.response.body = await Deno.readTextFile("index.html");
 });
 
